@@ -1,0 +1,53 @@
+  <div class="row row-cols-1 row-cols-md-3">
+  <div class="card w-auto col-md-3 mx-auto my-5" 
+  [hidden]="item.quantity==0" *ngFor="let item of CategoryProductList"
+  [ngStyle]="{'background-color':item.quantity==1? 
+  'lightyellow':'white'}"
+  ProductCard CardBackColor="light" style="border-radius: 15px;"
+ 
+  >
+
+<!-- 
+   [routerLink]="['/Product/Details', item.id]"-->
+    <div 
+      class="bg-image hover-overlay ripple ripple-surface ripple-surface-light"
+      data-mdb-ripple-color="light"
+    >
+      <img
+        src="{{item.img}}"
+        style="border-top-left-radius: 15px; border-top-right-radius: 15px;width: 100%;height:200px; "
+        class="img-fluid"
+        alt="image"  
+        (click)="openDetailsModal(item.id)" mat-mini-fab
+      
+      />
+    </div>
+    <div class="card-body pb-0">
+      <div class="d-flex justify-content-between">
+        <div>
+          <p><a href="#!" class="text-dark">Product Name</a></p>
+          <p class="small text-muted">{{item.name}}</p>
+        </div>
+        <div>
+          <p><a href="#!" class="text-dark">Quantity</a></p>
+          <p class="small text-muted">{{item.quantity}}</p>
+        </div>
+      </div>
+    </div>
+    <hr class="my-0" />
+    <div class="card-body pb-0">
+      <div>
+        <p><a href="#!" class="text-dark">Price</a></p>
+        <p class="small text-muted">{{item.price}}</p>
+     <div style="text-align: center;"><button (click)="Decrease(quantityneeded)">-</button><input #quantityneeded/> 
+      <button (click)="Increase(item,quantityneeded)">+</button></div>
+      <br>
+      <button (click)="AddToCart(item,+quantityneeded.value)" type="button" class="btn btn-success" style="width: 100%;">Add To Cart</button>
+  
+  </div>
+  </div>
+  </div>
+</div>
+
+
+

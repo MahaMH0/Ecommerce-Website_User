@@ -1,0 +1,49 @@
+<div [hidden]="CartClicked" class="mb-3">
+  <label class="form-label">Select Category</label>
+  <select class="form-control"
+      [(ngModel)]="SelectedCategoryID">
+    <option value="0">Select All</option>
+    <option *ngFor="let item of CategoryList" [value]="item.id">{{item.name}}</option>
+  </select><br>
+  <div class="bg-danger">
+    <app-CartChild [receivedSelCategoryID]="SelectedCategoryID"
+    (AddProductToCart)="UpdateCart($event)"
+    (UpdatedProducts)="UpdateProductList($event)"
+    ></app-CartChild>              
+  </div>
+</div>
+<!-- <hr> -->
+<div [hidden]="!CartClicked">
+<br><br>
+<div [hidden]="!IsUserLogged" class="col-sm-6">
+  <a routerLink="/Product/ShowOrders" routerLinkActive="active" class="nav-link">My Last Orders</a>
+</div>
+<h2>Cart</h2>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Needed Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of Cart">
+        <td>{{item.productID}}</td>
+        <td>{{item.productName}}</td>
+        <td>{{item.itemPrice}}</td>
+        <td><button (click)="Decrease(item)">-</button>{{item.selectedQuantity}} 
+          <button (click)="Increase(item)">+</button></td>
+        <td>
+          <button (click)="DeleteFromCart(item)" type="button" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>Total Price :</h4>
+<div>{{TotalPrice | currency:'EGP'}}</div>
+<button [disabled]="!(IsUserLogged && Cart.length)" (click)="CheckOut()" type="button" style="width: 50%; margin-left: 50%;" class="btn btn-danger">Check Out</button><br><br>
+</div>
