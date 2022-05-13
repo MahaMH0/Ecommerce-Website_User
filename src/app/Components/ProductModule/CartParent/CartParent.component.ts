@@ -162,6 +162,7 @@ export class CartParentComponent implements OnInit ,OnChanges{
       {
          item.quantity-=product.selectedQuantity;
          this.ProductApiService.updateProduct(item.id,item).subscribe();
+         
       }
 
     }

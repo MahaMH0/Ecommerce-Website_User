@@ -55,8 +55,11 @@ export class UserAuthenticatingService{
       console.log("Token",this.UserToken);
       console.log("Tokendata",this.tokendata);
       console.log("Role",this.role);
+      if(this.role =="User")
+      {
       localStorage.setItem("token",this.UserToken);
       localStorage.setItem("tokendata",this.tokendata);
+      }
       localStorage.setItem("role",this.role);
       this.ISLoggedSubject.next(true);
       return usertoken;
